@@ -1,6 +1,6 @@
-# [Project name]
+# Vanta Studios
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+A digital design and engineering studio website for Vanta Studios, featuring a preloader animation, smooth scrolling, GSAP animations, and a full agency landing page.
 
 ## Run & Operate
 
@@ -14,6 +14,9 @@ _Replace the heading above with the project's name, and this line with one sente
 ## Stack
 
 - pnpm workspaces, Node.js 24, TypeScript 5.9
+- Frontend: Plain HTML/CSS/JS served via Vite (static site — no React used)
+- Animations: GSAP + ScrollTrigger, Lenis smooth scroll
+- WebGL: Unicorn Studio
 - API: Express 5
 - DB: PostgreSQL + Drizzle ORM
 - Validation: Zod (`zod/v4`), `drizzle-zod`
@@ -22,15 +25,23 @@ _Replace the heading above with the project's name, and this line with one sente
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `artifacts/vanta-studios/index.html` — main page (static HTML)
+- `artifacts/vanta-studios/public/style.css` — all styles
+- `artifacts/vanta-studios/public/script.js` — GSAP + Lenis + all interactions
+- `artifacts/vanta-studios/public/` — fonts, images, case studies, favicon assets
+- `artifacts/api-server/` — Express backend (healthz only, expandable)
+- `lib/api-spec/openapi.yaml` — API contract source of truth
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- Imported as a plain HTML/CSS/JS static site from Vercel (no Next.js, no React used in frontend)
+- Vite serves `index.html` and all `public/` assets at root paths
+- All `./public/` relative paths in HTML, CSS, and data-attributes were rewritten to root-relative paths (`/fonts/`, `/marquee/`, etc.) to match Vite's static serving behavior
+- React scaffold exists in `src/` but is unused — the site is pure HTML/CSS/JS
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+Vanta Studios agency landing page with: preloader animation, hero section with WebGL background grid, approach process, dedicated team section, client work showcase, pricing table, case studies, and footer.
 
 ## User preferences
 
@@ -38,7 +49,9 @@ _Populate as you build — explicit user instructions worth remembering across s
 
 ## Gotchas
 
-_Populate as you build — sharp edges, "always run X before Y" rules._
+- Files in `public/` are served at root by Vite — always use `/filename` not `/public/filename`
+- The preloader runs ~1-2 seconds before page content reveals; the black screen is intentional
+- GSAP, ScrollTrigger, Lenis, and Unicorn Studio are loaded from CDN in index.html
 
 ## Pointers
 
