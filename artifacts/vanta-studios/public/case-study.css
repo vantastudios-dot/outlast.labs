@@ -116,7 +116,7 @@ img { display: block; max-width: 100%; }
 /* === Page Layout === */
 .cs-page {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: minmax(280px, 320px) minmax(0, 1fr);
   min-height: 100vh;
 }
 
@@ -176,7 +176,7 @@ img { display: block; max-width: 100%; }
 /* === Content Column === */
 .cs-content {
   padding: 8rem 4rem 8rem;
-  max-width: 860px;
+  max-width: 1120px;
 }
 .cs-hero-heading {
   font-family: var(--cs-font-heading);
@@ -223,8 +223,16 @@ img { display: block; max-width: 100%; }
 .cs-section p + p { margin-top: 1rem; }
 
 /* === Images === */
-.cs-image {
+.cs-image-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
   margin: 3rem 0;
+}
+.cs-image-grid .cs-image {
+  margin: 0;
+}
+.cs-image {
   overflow: hidden;
   background: #111;
 }

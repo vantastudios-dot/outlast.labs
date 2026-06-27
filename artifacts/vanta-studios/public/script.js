@@ -110,13 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
       { filter: 'blur(0px)', opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' },
       '-=0.6'
     );
-    
-    // Fade in video wrap inside footer
-    heroTl.fromTo('#hero .services-video-wrap', 
-      { filter: 'blur(12px)', opacity: 0 },
-      { filter: 'blur(0px)', opacity: 1, duration: 0.6 },
-      '-=0.4'
-    );
   };
 
   // --- 4. Lenis Smooth Scrolling ---
@@ -182,9 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cardsContainer = document.querySelector('#approach .cards');
     if (approachSection && cardsContainer) {
       const getShiftWidth = () => {
-        const paddingLeft = parseFloat(getComputedStyle(approachSection).paddingLeft) || 32;
-        const colWidth = (approachSection.offsetWidth - 2 * paddingLeft) / 8;
-        return colWidth * 2;
+        return approachSection.offsetWidth * 0.9;
       };
 
       gsap.fromTo(cardsContainer,
@@ -530,49 +521,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   );
-
-  // --- 11. Interactive Hover Cursor Preview inside Footer ---
-  const footer = document.getElementById('Footer-module-scss-module__JLT4gq__footer');
-  const cursorImg = document.getElementById('footer-cursor-img');
-  const previewImg = document.getElementById('cursor-preview-img');
-  const navLinks = document.querySelectorAll('.Footer-module-scss-module__JLT4gq__nav a');
-
-  if (footer && cursorImg && previewImg) {
-    footer.addEventListener('mousemove', (e) => {
-      const rect = footer.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      
-      gsap.to(cursorImg, {
-        x: x - 130, // center horizontally on cursor (width is 260px)
-        y: y - 100, // offset vertically
-        duration: 0.3,
-        ease: 'power2.out'
-      });
-    });
-
-    navLinks.forEach(link => {
-      link.addEventListener('mouseenter', () => {
-        const imgSrc = link.getAttribute('data-preview');
-        previewImg.src = imgSrc;
-        gsap.to(cursorImg, {
-          opacity: 1,
-          scale: 1,
-          duration: 0.3,
-          ease: 'power2.out'
-        });
-      });
-      
-      link.addEventListener('mouseleave', () => {
-        gsap.to(cursorImg, {
-          opacity: 0,
-          scale: 0.8,
-          duration: 0.3,
-          ease: 'power2.out'
-        });
-      });
-    });
-  }
 
   // --- 12. Unicorn Studio WebGL Initialization ---
   if (window.UnicornStudio) {
